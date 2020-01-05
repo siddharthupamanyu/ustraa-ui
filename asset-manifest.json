@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/ustraa-ui/static/css/main.d1b05096.chunk.css",
+    "main.js": "/ustraa-ui/static/js/main.b6a748da.chunk.js",
+    "main.js.map": "/ustraa-ui/static/js/main.b6a748da.chunk.js.map",
+    "runtime-main.js": "/ustraa-ui/static/js/runtime-main.f2707982.js",
+    "runtime-main.js.map": "/ustraa-ui/static/js/runtime-main.f2707982.js.map",
+    "static/js/2.9a054d7e.chunk.js": "/ustraa-ui/static/js/2.9a054d7e.chunk.js",
+    "static/js/2.9a054d7e.chunk.js.map": "/ustraa-ui/static/js/2.9a054d7e.chunk.js.map",
+    "index.html": "/ustraa-ui/index.html",
+    "precache-manifest.aec04ac7f54517078b7748ff03179dde.js": "/ustraa-ui/precache-manifest.aec04ac7f54517078b7748ff03179dde.js",
+    "service-worker.js": "/ustraa-ui/service-worker.js",
+    "static/css/main.d1b05096.chunk.css.map": "/ustraa-ui/static/css/main.d1b05096.chunk.css.map",
+    "static/js/2.9a054d7e.chunk.js.LICENSE": "/ustraa-ui/static/js/2.9a054d7e.chunk.js.LICENSE",
+    "static/media/logo.svg": "/ustraa-ui/static/media/logo.5d5d9eef.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.f2707982.js",
+    "static/js/2.9a054d7e.chunk.js",
+    "static/css/main.d1b05096.chunk.css",
+    "static/js/main.b6a748da.chunk.js"
+  ]
+}
