@@ -1,9 +1,12 @@
-import React from 'react';
+import React from "react";
+import Container from "@material-ui/core/Container";
 
 function App() {
   return (
     <React.Fragment>
-<div>Helooooworld</div>
+      <Container maxWidth="sm">
+        <div>Helooooworld</div>
+      </Container>
     </React.Fragment>
   );
 }
