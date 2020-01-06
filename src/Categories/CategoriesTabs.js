@@ -6,6 +6,7 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import ProductList from "./ProductList";
 import { ThemeProvider } from "@material-ui/core/styles";
+import { BaseAddress } from "../Environment/Environment";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -15,27 +16,30 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-// function a11yProps(index) {
-//     return {
-//       id: `scrollable-auto-tab-${index}`,
-//       'aria-controls': `scrollable-auto-tabpanel-${index}`,
-//     };
-//   }
-
 export default function CategoriesTabs(props) {
   const classes = useStyles();
-  const [value, setValue] = React.useState(0);
+  const [state, setState] = React.useState({
+    data: {},
+    value: 0
+  });
 
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-    console.log(props.data);
-  };
+  async function handleChange(event, newValue) {
+    const categoryId = event.currentTarget.tabIndex;
+    console.log(event.currentTarget);
+    const response = await fetch(
+      `https://backend.ustraa.com/rest/V1/api/catalog/v1.0.1?category_id=${categoryId}`
+    );
+    response.json().then(data => {
+      console.log(data)
+      setState({ ...state, data: data, value: newValue });
+    });
+  }
 
   return (
     <div className={classes.root}>
       <AppBar position="static" color="default">
         <Tabs
-          value={value}
+          value={state.value}
           onChange={handleChange}
           indicatorColor="primary"
           textColor="primary"
@@ -44,40 +48,25 @@ export default function CategoriesTabs(props) {
           aria-label="scrollable auto tabs example"
         >
           {props.data.category_list
-            ? props.data.category_list.map(element => {
-                console.log(element);
+            ? props.data.category_list.map(value => {
+                console.log(value);
                 return (
                   <Tab
-                    key={element.category_id}
-                    label={element.category_name}
-                    background={element.category_image}
+                    key={value.category_id}
+                    tabIndex={value.category_id}
+                    label={value.category_name}
+                    background={value.category_image}
                   />
                 );
               })
             : ""}
         </Tabs>
       </AppBar>
-      <ProductList value={value} index={0}>
-        Item One
-      </ProductList>
-      <ProductList value={value} index={1}>
-        Item Two
-      </ProductList>
-      <ProductList value={value} index={2}>
-        Item Three
-      </ProductList>
-      <ProductList value={value} index={3}>
-        Item Four
-      </ProductList>
-      <ProductList value={value} index={4}>
-        Item Five
-      </ProductList>
-      <ProductList value={value} index={5}>
-        Item Six
-      </ProductList>
-      <ProductList value={value} index={6}>
-        Item Seven
-      </ProductList>
+      {state.data.products
+        ? state.data.products.map(value => {
+            return <ProductList data={value} key={value.id} />;
+          })
+        : ""}
     </div>
   );
 }
