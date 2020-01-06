@@ -1,0 +1,1 @@
+export const BaseAddress = "https://backend.ustraa.com/rest/V1/api/homemenucategories/v1.0.1";

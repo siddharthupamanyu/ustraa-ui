@@ -5,6 +5,7 @@ import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import ProductList from "./ProductList";
+import { ThemeProvider } from "@material-ui/core/styles";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -21,13 +22,13 @@ const useStyles = makeStyles(theme => ({
 //     };
 //   }
 
-export default function CategoriesTabs() {
+export default function CategoriesTabs(props) {
   const classes = useStyles();
-
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
+    console.log(props.data);
   };
 
   return (
@@ -42,13 +43,18 @@ export default function CategoriesTabs() {
           scrollButtons="auto"
           aria-label="scrollable auto tabs example"
         >
-          <Tab label="Item One" />
-          <Tab label="Item Two" />
-          <Tab label="Item Three" />
-          <Tab label="Item Four" />
-          <Tab label="Item Five" />
-          <Tab label="Item Six" />
-          <Tab label="Item Seven" />
+          {props.data.category_list
+            ? props.data.category_list.map(element => {
+                console.log(element);
+                return (
+                  <Tab
+                    key={element.category_id}
+                    label={element.category_name}
+                    background={element.category_image}
+                  />
+                );
+              })
+            : ""}
         </Tabs>
       </AppBar>
       <ProductList value={value} index={0}>
