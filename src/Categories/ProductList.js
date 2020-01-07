@@ -11,8 +11,8 @@ import Button from "@material-ui/core/Button";
 
 const ColorButton = withStyles(theme => ({
   root: {
-    color: theme.palette.getContrastText("#4fcf64"),
-    backgroundColor: "#4fcf64"
+    color: theme.palette.getContrastText("#73da4d"),
+    backgroundColor: "#73da4d"
   }
 }))(Button);
 
