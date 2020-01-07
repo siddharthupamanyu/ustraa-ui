@@ -1,13 +1,13 @@
 import React from "react";
 // import PropTypes from "prop-types";
 import Typography from "@material-ui/core/Typography";
-import Box from "@material-ui/core/Box";
 import Card from "@material-ui/core/Card";
 import CardMedia from "@material-ui/core/CardMedia";
-import { makeStyles, useTheme, withStyles } from "@material-ui/core/styles";
+import { makeStyles, withStyles } from "@material-ui/core/styles";
 import CardContent from "@material-ui/core/CardContent";
-import IconButton from "@material-ui/core/IconButton";
 import Button from "@material-ui/core/Button";
+import StarIcon from "@material-ui/icons/Star";
+import Grid from "@material-ui/core/Grid";
 
 const ColorButton = withStyles(theme => ({
   root: {
@@ -20,25 +20,15 @@ const useStyles = makeStyles(theme => ({
   card: {
     display: "flex"
   },
+  margins: {
+    paddingBottom: 10
+  },
   details: {
     display: "flex",
     flexDirection: "column"
   },
   content: {
     flex: "1 0 auto"
-  },
-  cover: {
-    width: 151
-  },
-  controls: {
-    display: "flex",
-    alignItems: "center",
-    paddingLeft: theme.spacing(1),
-    paddingBottom: theme.spacing(1)
-  },
-  playIcon: {
-    height: 38,
-    width: 38
   },
   cardMedia: {
     height: 120,
@@ -48,30 +38,33 @@ const useStyles = makeStyles(theme => ({
     display: "block",
     marginTop: 5
   },
+  rating: {
+    color: "#9e9e9e"
+  },
+  starIcon: {
+    fontSize: 14
+  },
   price: {
     textDecoration: "line-through",
-    overflow: "wrap",
-    paddingLeft: 5,
-    color: "#9e9e9e",
-    fontSize: 12
-  },
-  weight: {
-    fontSize: 10
+    paddingTop: 7,
+    paddingLeft: 5
   }
+  // weight: {
+  //   fontSize: 10
+  // },
+  // finalPrice: {
+  //   fontWeight: "bold",
+  // },
+  // rating: {
+  //   fontSize: 15
+  // },
+  // name: {
+  //   fontSize: 15
+  // }
 }));
-
-// const useStyles = makeStyles({
-//   cardMedia: {
-//     height: 520,
-//     //paddingTop: "56.25%", // 16:9,
-//     //marginTop: "30"
-//   }
-// });
 
 export default function ProductList(props) {
   const classes = useStyles();
-  const theme = useTheme();
-
   const {
     name,
     image_urls: img,
@@ -96,18 +89,31 @@ export default function ProductList(props) {
       />
       <div className={classes.details}>
         <CardContent className={classes.content}>
-          <Typography component="h7" variant="h7">
-            {name}
-          </Typography>
-          <Typography className={classes.weight} color="textSecondary">
+          <Grid container>
+            <Typography variant="subtitle1" component="h2">
+              {name}
+            </Typography>
+            <Typography variant="subtitle2" color="textSecondary">
+              {rating ? rating : 0}
+              <StarIcon className={classes.starIcon} />
+            </Typography>
+          </Grid>
+          <Typography variant="caption" color="textSecondary">
             {weight ? `(${weight} ${unit})` : ""}
           </Typography>
-          <Typography component="h8" variant="h8">
-            {`₹ ${fp}`}
-          </Typography>
-          <Typography className={classes.price} component="h20" variant="h20">
-            {`₹ ${price}`}
-          </Typography>
+          <Grid container>
+            <Typography inline="true" variant="h6">
+              {`₹ ${fp}`}
+            </Typography>
+            <Typography
+              inline="true"
+              className={classes.price}
+              variant="subtitle2"
+              color="textSecondary"
+            >
+              {`₹ ${price}`}
+            </Typography>
+          </Grid>
           <ColorButton
             className={classes.button}
             variant="contained"
@@ -117,23 +123,7 @@ export default function ProductList(props) {
             {iis ? "ADD TO CART" : "OUT OF STOCK"}
           </ColorButton>
         </CardContent>
-        <div className={classes.controls}>
-          <IconButton aria-label="Previous"></IconButton>
-          <IconButton aria-label="Play/pause"></IconButton>
-          <IconButton aria-label="Next"></IconButton>
-        </div>
       </div>
-      {console.log(name, img)}
-      {/* <Typography
-        component="div"
-        role="tabpanel"
-        hidden={value !== index}
-        id={`scrollable-auto-tabpanel-${index}`}
-        aria-labelledby={`scrollable-auto-tab-${index}`}
-        {...other}
-      >
-        {value === index && <Box p={3}>{children}</Box>}
-      </Typography> */}
     </Card>
   );
 }

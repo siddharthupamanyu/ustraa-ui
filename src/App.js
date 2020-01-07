@@ -17,9 +17,9 @@ function App() {
 
   return (
     <React.Fragment>
-      <Container maxWidth="sm">
+      {/* <Container maxWidth="sm"> */}
         <Categories data={state} />
-      </Container>
+      {/* </Container> */}
     </React.Fragment>
   );
 }
