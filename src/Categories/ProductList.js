@@ -89,15 +89,13 @@ export default function ProductList(props) {
       />
       <div className={classes.details}>
         <CardContent className={classes.content}>
-          <Grid container>
-            <Typography variant="subtitle1" component="h2">
-              {name}
-            </Typography>
-            <Typography variant="subtitle2" color="textSecondary">
-              {rating ? rating : 0}
-              <StarIcon className={classes.starIcon} />
-            </Typography>
-          </Grid>
+          <Typography variant="subtitle1" component="h2">
+            {name}
+          </Typography>
+          <Typography variant="subtitle2" color="textSecondary">
+            {rating ? rating : 0}
+            <StarIcon className={classes.starIcon} />
+          </Typography>
           <Typography variant="caption" color="textSecondary">
             {weight ? `(${weight} ${unit})` : ""}
           </Typography>
