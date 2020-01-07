@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/ustraa-ui/precache-manifest.86d8f9facbe799be52a647d04bf7b587.js"
+  "/ustraa-ui/precache-manifest.b211a70cf1b790e896ba5d94d652c63d.js"
 );
 
 self.addEventListener('message', (event) => {
