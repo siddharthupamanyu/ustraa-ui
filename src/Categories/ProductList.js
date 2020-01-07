@@ -47,6 +47,16 @@ const useStyles = makeStyles(theme => ({
   button: {
     display: "block",
     marginTop: 5
+  },
+  price: {
+    textDecoration: "line-through",
+    overflow: "wrap",
+    paddingLeft: 5,
+    color: "#9e9e9e",
+    fontSize: 12
+  },
+  weight: {
+    fontSize: 10
   }
 }));
 
@@ -89,13 +99,15 @@ export default function ProductList(props) {
           <Typography component="h7" variant="h7">
             {name}
           </Typography>
-          <Typography variant="subtitle1" color="textSecondary">
-            {`(${weight} ${unit})`}
+          <Typography className={classes.weight} color="textSecondary">
+            {weight ? `(${weight} ${unit})` : ""}
           </Typography>
           <Typography component="h8" variant="h8">
+            {`₹ ${fp}`}
+          </Typography>
+          <Typography className={classes.price} component="h20" variant="h20">
             {`₹ ${price}`}
           </Typography>
-
           <ColorButton
             className={classes.button}
             variant="contained"
