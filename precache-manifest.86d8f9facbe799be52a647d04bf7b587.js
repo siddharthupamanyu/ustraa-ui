@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "dc5a32e752a0fc0d83e3872d92d7fadd",
+    "revision": "d9f74de300af3a31a94385936e46ac50",
     "url": "/ustraa-ui/index.html"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/ustraa-ui/static/js/2.d477d6a8.chunk.js.LICENSE"
   },
   {
-    "revision": "6a3726a3a9d3e18f98d5",
-    "url": "/ustraa-ui/static/js/main.15191fea.chunk.js"
+    "revision": "cab0e3e211781be2e538",
+    "url": "/ustraa-ui/static/js/main.f5226dab.chunk.js"
   },
   {
     "revision": "0cb4b3ed05207684886a",
