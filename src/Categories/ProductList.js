@@ -4,9 +4,17 @@ import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import Card from "@material-ui/core/Card";
 import CardMedia from "@material-ui/core/CardMedia";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { makeStyles, useTheme, withStyles } from "@material-ui/core/styles";
 import CardContent from "@material-ui/core/CardContent";
 import IconButton from "@material-ui/core/IconButton";
+import Button from "@material-ui/core/Button";
+
+const ColorButton = withStyles(theme => ({
+  root: {
+    color: theme.palette.getContrastText("#4fcf64"),
+    backgroundColor: "#4fcf64"
+  }
+}))(Button);
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -33,10 +41,12 @@ const useStyles = makeStyles(theme => ({
     width: 38
   },
   cardMedia: {
-    height: 200,
-    maxWidth: 200
-    //paddingTop: "56.25%", // 16:9,
-    //marginTop: "30"
+    height: 120,
+    maxWidth: 120
+  },
+  button: {
+    display: "block",
+    marginTop: 5
   }
 }));
 
@@ -60,36 +70,45 @@ export default function ProductList(props) {
     price,
     final_price: fp,
     rating,
-    is_in_stock,
+    is_in_stock: iis,
     ...other
   } = props.data;
 
   return (
-    <Card>
+    <Card className={classes.card}>
       <CardMedia
         className={classes.cardMedia}
         component="img"
         alt="Contemplative Reptile"
         height="140"
-        image={img.x200}
+        image={img.x120}
         title="Contemplative Reptile"
       />
       <div className={classes.details}>
         <CardContent className={classes.content}>
-          <Typography component="h5" variant="h5">
-            Live From Space
+          <Typography component="h7" variant="h7">
+            {name}
           </Typography>
           <Typography variant="subtitle1" color="textSecondary">
-            Mac Miller
+            {`(${weight} ${unit})`}
           </Typography>
+          <Typography component="h8" variant="h8">
+            {`₹ ${price}`}
+          </Typography>
+
+          <ColorButton
+            className={classes.button}
+            variant="contained"
+            color="primary"
+            disabled={iis ? false : true}
+          >
+            {iis ? "ADD TO CART" : "OUT OF STOCK"}
+          </ColorButton>
         </CardContent>
         <div className={classes.controls}>
-          <IconButton aria-label="Previous">
-          </IconButton>
-          <IconButton aria-label="Play/pause">
-          </IconButton>
-          <IconButton aria-label="Next">
-          </IconButton>
+          <IconButton aria-label="Previous"></IconButton>
+          <IconButton aria-label="Play/pause"></IconButton>
+          <IconButton aria-label="Next"></IconButton>
         </div>
       </div>
       {console.log(name, img)}
