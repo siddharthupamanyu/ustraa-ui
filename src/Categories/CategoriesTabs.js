@@ -5,6 +5,8 @@ import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import ProductList from "./ProductList";
+import Paper from "@material-ui/core/Paper";
+import Footer from "./Footer";
 import { BaseAddress } from "../Environment/Environment";
 
 const useStyles = makeStyles(theme => ({
@@ -22,6 +24,12 @@ export default function CategoriesTabs(props) {
     value: 0
   });
 
+  React.useEffect(() => {
+    if (Object.entries(props.data).length > 0) {
+      setState({ ...state, data: props.data.product_list });
+    }
+  }, [Object.entries(props.data).length]);
+
   async function handleChange(event, newValue) {
     const categoryId = event.currentTarget.tabIndex;
     console.log(event.currentTarget);
@@ -29,7 +37,7 @@ export default function CategoriesTabs(props) {
       `https://backend.ustraa.com/rest/V1/api/catalog/v1.0.1?category_id=${categoryId}`
     );
     response.json().then(data => {
-      console.log(data)
+      console.log(data);
       setState({ ...state, data: data, value: newValue });
     });
   }
@@ -61,11 +69,14 @@ export default function CategoriesTabs(props) {
             : ""}
         </Tabs>
       </AppBar>
-      {state.data.products
-        ? state.data.products.map(value => {
-            return <ProductList data={value} key={value.id} />;
-          })
-        : ""}
+      <Paper>
+        {state.data.products
+          ? state.data.products.map(value => {
+              return <ProductList data={value} key={value.id} />;
+            })
+          : ""}
+        <Footer />
+      </Paper>
     </div>
   );
 }
