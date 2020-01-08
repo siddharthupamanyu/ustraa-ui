@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.js": "/ustraa-ui/static/js/main.55598cc9.chunk.js",
-    "main.js.map": "/ustraa-ui/static/js/main.55598cc9.chunk.js.map",
+    "main.js": "/ustraa-ui/static/js/main.32258637.chunk.js",
+    "main.js.map": "/ustraa-ui/static/js/main.32258637.chunk.js.map",
     "runtime-main.js": "/ustraa-ui/static/js/runtime-main.f2707982.js",
     "runtime-main.js.map": "/ustraa-ui/static/js/runtime-main.f2707982.js.map",
-    "static/js/2.e74b30cd.chunk.js": "/ustraa-ui/static/js/2.e74b30cd.chunk.js",
-    "static/js/2.e74b30cd.chunk.js.map": "/ustraa-ui/static/js/2.e74b30cd.chunk.js.map",
+    "static/js/2.ba1ec09e.chunk.js": "/ustraa-ui/static/js/2.ba1ec09e.chunk.js",
+    "static/js/2.ba1ec09e.chunk.js.map": "/ustraa-ui/static/js/2.ba1ec09e.chunk.js.map",
     "index.html": "/ustraa-ui/index.html",
-    "precache-manifest.2675d381b2988269fbe031ab217cd29b.js": "/ustraa-ui/precache-manifest.2675d381b2988269fbe031ab217cd29b.js",
+    "precache-manifest.ba34261a6c3ac5aeaf41ff84d861ab19.js": "/ustraa-ui/precache-manifest.ba34261a6c3ac5aeaf41ff84d861ab19.js",
     "service-worker.js": "/ustraa-ui/service-worker.js",
-    "static/js/2.e74b30cd.chunk.js.LICENSE": "/ustraa-ui/static/js/2.e74b30cd.chunk.js.LICENSE"
+    "static/js/2.ba1ec09e.chunk.js.LICENSE": "/ustraa-ui/static/js/2.ba1ec09e.chunk.js.LICENSE"
   },
   "entrypoints": [
     "static/js/runtime-main.f2707982.js",
-    "static/js/2.e74b30cd.chunk.js",
-    "static/js/main.55598cc9.chunk.js"
+    "static/js/2.ba1ec09e.chunk.js",
+    "static/js/main.32258637.chunk.js"
   ]
 }
