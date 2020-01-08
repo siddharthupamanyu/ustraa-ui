@@ -5,7 +5,6 @@ import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import ProductList from "./ProductList";
-import Paper from "@material-ui/core/Paper";
 import Footer from "./Footer";
 import { BaseAddress } from "../Environment/Environment";
 
@@ -34,9 +33,8 @@ export default function CategoriesTabs(props) {
 
   async function handleChange(event, newValue) {
     const categoryId = event.currentTarget.tabIndex;
-    console.log(event.currentTarget);
     const response = await fetch(
-      `https://backend.ustraa.com/rest/V1/api/catalog/v1.0.1?category_id=${categoryId}`
+      `${BaseAddress}/catalog/v1.0.1?category_id=${categoryId}`
     );
     response.json().then(data => {
       console.log(data);
@@ -79,7 +77,6 @@ export default function CategoriesTabs(props) {
             : ""}
         </Tabs>
       </AppBar>
-      {/* <Paper> */}
       {state.data.products
         ? state.isLess
           ? state.data.products.slice(0, 3).map(value => {
@@ -94,7 +91,6 @@ export default function CategoriesTabs(props) {
         changeView={changeView}
         changeCategory={changeCategory}
       />
-      {/* </Paper> */}
     </div>
   );
 }

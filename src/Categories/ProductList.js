@@ -49,18 +49,6 @@ const useStyles = makeStyles(theme => ({
     paddingTop: 7,
     paddingLeft: 5
   }
-  // weight: {
-  //   fontSize: 10
-  // },
-  // finalPrice: {
-  //   fontWeight: "bold",
-  // },
-  // rating: {
-  //   fontSize: 15
-  // },
-  // name: {
-  //   fontSize: 15
-  // }
 }));
 
 export default function ProductList(props) {
