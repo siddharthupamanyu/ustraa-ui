@@ -21,7 +21,9 @@ export default function CategoriesTabs(props) {
   const classes = useStyles();
   const [state, setState] = React.useState({
     data: {},
-    value: 0
+    value: 0,
+    isLess: true,
+    viewString: "[+] View More"
   });
 
   React.useEffect(() => {
@@ -41,6 +43,14 @@ export default function CategoriesTabs(props) {
       setState({ ...state, data: data, value: newValue });
     });
   }
+
+  const changeView = () => {
+    let newView = state.isLess ? false : true;
+    let newString = state.isLess ? "[-] View Less" : "[+] View More";
+    setState({ ...state, isLess: newView, viewString: newString });
+  };
+
+  const changeCategory = () => {};
 
   return (
     <div className={classes.root}>
@@ -69,14 +79,22 @@ export default function CategoriesTabs(props) {
             : ""}
         </Tabs>
       </AppBar>
-      <Paper>
-        {state.data.products
-          ? state.data.products.map(value => {
+      {/* <Paper> */}
+      {state.data.products
+        ? state.isLess
+          ? state.data.products.slice(0, 3).map(value => {
               return <ProductList data={value} key={value.id} />;
             })
-          : ""}
-        <Footer />
-      </Paper>
+          : state.data.products.map(value => {
+              return <ProductList data={value} key={value.id} />;
+            })
+        : ""}
+      <Footer
+        viewString={state.viewString}
+        changeView={changeView}
+        changeCategory={changeCategory}
+      />
+      {/* </Paper> */}
     </div>
   );
 }
