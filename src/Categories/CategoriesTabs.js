@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
-import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import ProductList from "./ProductList";
@@ -13,6 +12,9 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1,
     width: "100%",
     backgroundColor: theme.palette.background.paper
+  },
+  tabs: {
+    borderRadius: 10
   }
 }));
 
@@ -22,23 +24,35 @@ export default function CategoriesTabs(props) {
     data: {},
     value: 0,
     isLess: true,
-    viewString: "[+] View More"
+    viewString: "[+] View More",
+    selectString: ""
   });
 
   React.useEffect(() => {
     if (Object.entries(props.data).length > 0) {
-      setState({ ...state, data: props.data.product_list });
+      setState({
+        ...state,
+        data: props.data.product_list,
+        selectString: props.data.category_list[0].category_name
+      });
     }
   }, [Object.entries(props.data).length]);
 
   async function handleChange(event, newValue) {
-    const categoryId = event.currentTarget.tabIndex;
+    const categoryId = event.currentTarget.id;
+    const categoryName = event.target.innerText;
     const response = await fetch(
       `${BaseAddress}/catalog/v1.0.1?category_id=${categoryId}`
     );
     response.json().then(data => {
-      console.log(data);
-      setState({ ...state, data: data, value: newValue });
+      setState({
+        ...state,
+        data: data,
+        value: newValue,
+        isLess: true,
+        viewString: "[+] View More",
+        selectString: categoryName
+      });
     });
   }
 
@@ -48,35 +62,33 @@ export default function CategoriesTabs(props) {
     setState({ ...state, isLess: newView, viewString: newString });
   };
 
-  const changeCategory = () => {};
+  const changeCategory = (event, newValue) => {
+    handleChange(event, newValue);
+  };
 
   return (
     <div className={classes.root}>
-      <AppBar position="static" color="default">
-        <Tabs
-          value={state.value}
-          onChange={handleChange}
-          indicatorColor="primary"
-          textColor="primary"
-          variant="scrollable"
-          scrollButtons="auto"
-          aria-label="scrollable auto tabs example"
-        >
-          {props.data.category_list
-            ? props.data.category_list.map(value => {
-                console.log(value);
-                return (
-                  <Tab
-                    key={value.category_id}
-                    tabIndex={value.category_id}
-                    label={value.category_name}
-                    background={value.category_image}
-                  />
-                );
-              })
-            : ""}
-        </Tabs>
-      </AppBar>
+      <Tabs
+        value={state.value}
+        onChange={handleChange}
+        indicatorColor="primary"
+        textColor="primary"
+        variant="scrollable"
+        scrollButtons="auto"
+      >
+        {props.data.category_list
+          ? props.data.category_list.map(value => {
+              return (
+                <Tab
+                  className={classes.tabs}
+                  key={value.category_id}
+                  id={value.category_id}
+                  label={value.category_name}
+                />
+              );
+            })
+          : ""}
+      </Tabs>
       {state.data.products
         ? state.isLess
           ? state.data.products.slice(0, 3).map(value => {
@@ -87,10 +99,16 @@ export default function CategoriesTabs(props) {
             })
         : ""}
       <Footer
+        changeString={state.selectString}
         viewString={state.viewString}
         changeView={changeView}
         changeCategory={changeCategory}
+        category={props.data.category_list}
       />
     </div>
   );
+}
+
+CategoriesTabs.propTypes = {
+  data: PropTypes.object.isRequired
 }

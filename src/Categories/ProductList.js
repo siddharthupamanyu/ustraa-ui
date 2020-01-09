@@ -1,5 +1,5 @@
 import React from "react";
-// import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 import Typography from "@material-ui/core/Typography";
 import Card from "@material-ui/core/Card";
 import CardMedia from "@material-ui/core/CardMedia";
@@ -36,10 +36,15 @@ const useStyles = makeStyles(theme => ({
   },
   button: {
     display: "block",
-    marginTop: 5
+    marginTop: 5,
+    color: "white",
+    borderRadius: 0
   },
   rating: {
-    color: "#9e9e9e"
+    color: "#9e9e9e",
+    position: "inherit",
+    right: 0,
+    top: 5
   },
   starIcon: {
     fontSize: 14
@@ -70,10 +75,9 @@ export default function ProductList(props) {
       <CardMedia
         className={classes.cardMedia}
         component="img"
-        alt="Contemplative Reptile"
+        alt="Image not Available"
         height="140"
         image={img.x120}
-        title="Contemplative Reptile"
       />
       <div className={classes.details}>
         <CardContent className={classes.content}>
@@ -105,6 +109,7 @@ export default function ProductList(props) {
             variant="contained"
             color="primary"
             disabled={iis ? false : true}
+            disableElevation
           >
             {iis ? "ADD TO CART" : "OUT OF STOCK"}
           </ColorButton>
@@ -112,4 +117,9 @@ export default function ProductList(props) {
       </div>
     </Card>
   );
+}
+
+ProductList.propTypes = {
+  data: PropTypes.object.isRequired,
+  key: PropTypes.number.isRequired
 }

@@ -1,6 +1,6 @@
 import React from "react";
-import Categories from "./Categories/Categories";
 import { BaseAddress } from "./Environment/Environment";
+import CategoriesTabs from "./Categories/CategoriesTabs"
 
 function App() {
   const [state, setState] = React.useState({});
@@ -18,7 +18,7 @@ function App() {
 
   return (
     <React.Fragment>
-      <Categories data={state} />
+      <CategoriesTabs data={state} />
     </React.Fragment>
   );
 }
